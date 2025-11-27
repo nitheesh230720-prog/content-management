@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Content Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-page="{{ page }}">
+
+  <div id="registerPage" class="page">
+    <h2>Register</h2>
+    <form action="/register" method="POST">
+      <input type="text" name="fname" placeholder="First Name"><br>
+      <input type="text" name="lname" placeholder="Last Name"><br>
+      <input type="text" name="userid" placeholder="User ID"><br>
+      <input type="password" name="password" placeholder="Password"><br>
+      <button type="submit">Register</button>
+    </form>
+    <p><a href="#" onclick="showPage('loginPage')">Already have an account? Login</a></p>
+  </div>
+
+  <div id="loginPage" class="page">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <input type="text" name="userid" placeholder="User ID"><br>
+      <input type="password" name="password" placeholder="Password"><br>
+      <button type="submit">Login</button>
+    </form>
+    <p><a href="#" onclick="showPage('registerPage')">Don't have an account? Register</a></p>
+  </div>
+
+  <div id="homePage" class="page">
+    <h2>Welcome {{ fname }} {{ lname }}</h2>
+    <p>You are logged in.</p>
+    <a href="/logout">Logout</a>
+  </div>
+
+  {% if message %}
+    <div class="message">{{ message }}</div>
+  {% endif %}
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
